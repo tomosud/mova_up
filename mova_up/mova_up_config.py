@@ -13,7 +13,8 @@ def manage_tool_settings():
         # ファイルが存在しない場合、デフォルト設定を作成
         config['DEFAULT'] = {
             'moveai_user': 'temp@temp.com',
-            'moveai_pass': 'password'
+            'moveai_pass': 'password',
+            'PYPPETEER_CHROMIUM_REVISION': '1263111'
         }
         # ファイルに書き込む
         with open(config_file, 'w') as configfile:
@@ -41,7 +42,7 @@ def manage_tool_settings():
             globals()[key] = dictn[key]
 
         # 読み込んだ情報を表示（デバッグ用）
-        rerurn dictn
+        return dictn
         
 # 関数を実行して結果を表示
 #manage_tool_settings()

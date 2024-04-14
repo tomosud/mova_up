@@ -4,6 +4,17 @@ print ("Hello World")
 
 import asyncio
 import requests
+
+print ('\n\n---------------------------------')
+print ('もし、pyppeteerがエラーを出す場合は、以下のファイルを修正してください。')
+print ('\\venv\Lib\site-packages\pyppeteer\__init__.py')
+print ('以下のコードを置き換えて')
+print ("__chromium_revision__ = '1181205'")
+print ('↓')
+print ("__chromium_revision__ = '1263111'")
+print ('---------------------------------\n\n')
+
+
 from pyppeteer import launch
 import urllib
 
@@ -21,8 +32,8 @@ def do():
     global mpass
 
     if config is not None:
-        muser = config['MOVEAI_USER']
-        mpass = config['MOVEAI_PASS']
+        muser = config['moveai_user']
+        mpass = config['moveai_pass']
     else:
         return 
     
@@ -48,8 +59,8 @@ async def main():
     await page.waitForSelector('#signInFormUsername')
 
     # ユーザー名（Email）とパスワードを入力
-    await page.type('#signInFormUsername', u)  # 実際のメールアドレスに置き換えてください
-    await page.type('#signInFormPassword', p)  # 実際のパスワードに置き換えてください
+    await page.type('#signInFormUsername', muser)  # 実際のメールアドレスに置き換えてください
+    await page.type('#signInFormPassword', mpass)  # 実際のパスワードに置き換えてください
 
     # ログインボタンをクリックして、ページの遷移を待つ
     # ナビゲーションとクリックイベントを同時に待つためにasyncio.gatherを使用
@@ -63,7 +74,7 @@ async def main():
     
      # クッキーを取得
     cookies = await page.cookies()
-    await browser.close()
+    #await browser.close()
     
     
 
