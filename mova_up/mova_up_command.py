@@ -37,7 +37,8 @@ def do():
     else:
         return 
     
-    asyncio.get_event_loop().run_until_complete(main()) 
+    #
+    return asyncio.get_event_loop().run_until_complete(main()) 
     
 
 file = 'C:/Users/tomoh/Desktop/two_person_ken/cam02_two_person_ken.mp4'
@@ -76,8 +77,6 @@ async def main():
     cookies = await page.cookies()
     #await browser.close()
     
-    
-
     #requestsへ渡す
 
     # セッションを作成
@@ -95,12 +94,13 @@ async def main():
             csrf_token = cookie['value']
 
 
-
     # ログイン後のページをリクエスト
     response = session.get(url)
     #print(response.text)
 
     print ('csrf_token is ',csrf_token)
+    print ('return session and csrf_token')
+    return [session,csrf_token]
 
     '''
 
