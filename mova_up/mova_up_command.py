@@ -40,12 +40,14 @@ def do():
     #
     return asyncio.get_event_loop().run_until_complete(main()) 
     
-
 file = 'C:/Users/tomoh/Desktop/two_person_ken/cam02_two_person_ken.mp4'
 
 #https://qiita.com/bishop_func/items/bb9071e38ce0d812c115
 
 async def main():
+
+    #global settion
+
     #browser = await launch()
     browser = await launch(headless=False)
     page = await browser.newPage()
@@ -79,7 +81,7 @@ async def main():
     
     #requestsへ渡す
 
-    # セッションを作成
+    # セッションを作成 globalでセッションを保持
     session = requests.Session()
 
     csrf_token = ''
@@ -100,6 +102,8 @@ async def main():
 
     print ('csrf_token is ',csrf_token)
     print ('return session and csrf_token')
+
+    
     return [session,csrf_token]
 
     '''
